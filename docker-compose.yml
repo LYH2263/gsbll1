@@ -1,0 +1,67 @@
+version: '3.8'
+
+services:
+  # MongoDB 数据库
+  mongodb:
+    image: mongo:6.0
+    container_name: wordmaster-mongodb
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: wordmaster2024
+      MONGO_INITDB_DATABASE: wordmaster
+    volumes:
+      - mongodb_data:/data/db
+      - ./backend/init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
+    networks:
+      - wordmaster-network
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/test --quiet
+      interval: 10s
+      timeout: 10s
+      retries: 5
+
+  # Node.js 后端服务
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: wordmaster-backend
+    restart: unless-stopped
+    environment:
+      NODE_ENV: production
+      PORT: 5014
+      MONGODB_URI: mongodb://admin:wordmaster2024@mongodb:27017/wordmaster?authSource=admin
+      JWT_SECRET: wordmaster_super_secret_jwt_key_2024
+      JWT_EXPIRES_IN: 7d
+    ports:
+      - "5014:5014"
+    depends_on:
+      mongodb:
+        condition: service_healthy
+    networks:
+      - wordmaster-network
+    volumes:
+      - backend_uploads:/app/uploads
+
+  # Vue.js 前端 + Nginx 服务
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: wordmaster-frontend
+    restart: unless-stopped
+    ports:
+      - "3014:80"
+    depends_on:
+      - backend
+    networks:
+      - wordmaster-network
+
+networks:
+  wordmaster-network:
+    driver: bridge
+
+volumes:
+  mongodb_data:
+  backend_uploads:
