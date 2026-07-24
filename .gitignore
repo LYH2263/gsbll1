@@ -3,3 +3,40 @@
 
 # 对话记录
 对话/
+
+# 依赖
+node_modules/
+
+# 构建产物
+dist/
+build/
+.vite/
+*.local
+
+# 环境与密钥
+.env
+.env.*
+!.env.example
+
+# 日志与缓存
+logs/
+*.log
+npm-debug.log*
+.cache/
+.temp/
+.tmp/
+
+# 系统与 IDE
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# 测试与覆盖率
+coverage/
+.nyc_output/
+
+# Docker
+*.pid
