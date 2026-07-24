@@ -81,6 +81,7 @@ const mainNav = computed(() => [
   { path: '/wrong-words', icon: '❌', label: '错题集' },
   { path: '/starred', icon: '⭐', label: '重点单词' },
   { path: '/stats', icon: '📊', label: '学习统计' },
+  { path: '/diary', icon: '📔', label: '学习日记' },
 ])
 
 const manageNav = computed(() => [

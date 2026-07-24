@@ -16,6 +16,7 @@ const ReviewView = () => import('@/views/ReviewView.vue')
 const WrongWordsView = () => import('@/views/WrongWordsView.vue')
 const StarredWordsView = () => import('@/views/StarredWordsView.vue')
 const StatsView = () => import('@/views/StatsView.vue')
+const DiaryView = () => import('@/views/DiaryView.vue')
 const ProfileView = () => import('@/views/ProfileView.vue')
 const AdminView = () => import('@/views/AdminView.vue')
 
@@ -62,6 +63,11 @@ const routes = [
         path: '/stats',
         component: StatsView,
         meta: { requiresAuth: true, title: '学习统计' }
+    },
+    {
+        path: '/diary',
+        component: DiaryView,
+        meta: { requiresAuth: true, title: '学习日记' }
     },
     {
         path: '/profile',
