@@ -78,6 +78,7 @@ const mainNav = computed(() => [
   { path: '/dashboard', icon: '🏠', label: '学习总览' },
   { path: '/wordbooks', icon: '📚', label: '单词书库' },
   { path: '/review', icon: '🔄', label: '今日复习' },
+  { path: '/diary', icon: '📝', label: '学习日记' },
   { path: '/wrong-words', icon: '❌', label: '错题集' },
   { path: '/starred', icon: '⭐', label: '重点单词' },
   { path: '/stats', icon: '📊', label: '学习统计' },
