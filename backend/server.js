@@ -19,6 +19,7 @@ const studyRoutes = require('./routes/study');
 const statsRoutes = require('./routes/stats');
 const userRoutes = require('./routes/users');
 const reviewRoutes = require('./routes/review');
+const diaryRoutes = require('./routes/diaries');
 
 const app = express();
 const PORT = process.env.PORT || 5014;
@@ -67,6 +68,7 @@ app.use('/api/study', studyRoutes);
 app.use('/api/stats', statsRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/review', reviewRoutes);
+app.use('/api/diaries', diaryRoutes);
 
 // 健康检查
 app.get('/api/health', (req, res) => {
