@@ -18,6 +18,7 @@ const StarredWordsView = () => import('@/views/StarredWordsView.vue')
 const StatsView = () => import('@/views/StatsView.vue')
 const ProfileView = () => import('@/views/ProfileView.vue')
 const AdminView = () => import('@/views/AdminView.vue')
+const DiaryView = () => import('@/views/DiaryView.vue')
 
 const routes = [
     { path: '/', redirect: '/dashboard' },
@@ -72,6 +73,11 @@ const routes = [
         path: '/admin',
         component: AdminView,
         meta: { requiresAuth: true, requiresAdmin: true, title: '管理后台' }
+    },
+    {
+        path: '/diary',
+        component: DiaryView,
+        meta: { requiresAuth: true, title: '学习日记' }
     },
     { path: '/:pathMatch(.*)*', redirect: '/dashboard' }
 ]
